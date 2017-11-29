@@ -43,9 +43,8 @@ export class AppComponent {
   deleteTask(task) {
     // call the service method to delete the task
     this.taskDataService.deleteTaskWithId(task.id);
-
     // if the deleted task is undone, reduce the number of undone tasks
-    if (task.done_status === false) {
+    if (task.done_status === false || task.done_status === undefined) {
       this.undone_tasks_num--;
     }
   }
