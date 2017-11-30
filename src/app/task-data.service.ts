@@ -49,7 +49,7 @@ export class TaskDataService {
   }
 
   // modify the done status of a task
-  modifyTaskDonetatus (task: Task): Task {
+  modifyTaskDoneStatus (task: Task): Task {
     const taskToModify = this.editTaskWithId(task.id, {
       done_status: !task.done_status
     });

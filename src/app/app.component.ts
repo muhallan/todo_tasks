@@ -5,8 +5,7 @@ import { Task } from './task';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [TaskDataService]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
 
@@ -52,7 +51,7 @@ export class AppComponent {
   // method to modify the done status of a task
   modifyDoneStatus(task) {
     // call the service method to toggle the done status of a task
-    this.taskDataService.modifyTaskDonetatus(task);
+    this.taskDataService.modifyTaskDoneStatus(task);
 
     // if the modified task is changed to the done status, then reduce the undone tasks, else increase
     if (task.done_status === true) {
