@@ -4,12 +4,12 @@
 
   <div ui-view="header" autoscroll="true" class="row justify-content-center" style="margin-top: 20px;">
     <!-- TaskListComponent that shows the list of tasks -->
-    <app-task-list 
+    <app-task-list class="col-md-8 col-md-offset-2"
       [tasks]="tasks" 
       (modifyDoneStatus)="onModifyDoneStatus($event)"
       (delete)="onDeleteTask($event)">
     </app-task-list>
     <!-- TaskListFooterComponent that shows the footer -->
-    <app-task-list-footer [undone_tasks_num]="undone_tasks_num"></app-task-list-footer>
+    <app-task-list-footer class="col-md-8 col-md-offset-2" [undone_tasks_num]="undone_tasks_num"></app-task-list-footer>
   </div>
 </section>
