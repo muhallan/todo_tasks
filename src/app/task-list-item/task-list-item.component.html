@@ -1,0 +1,12 @@
+<div style="margin: 30px 0; padding: 10px;" class="row d-flex flex-row card border-primary">
+  <div class="col-0 align-self-center">
+    <label>
+      <!-- add the class `done` and check it if a task's done_status is true -->
+      <input class="modify_done" type="checkbox" value="" (click)="modifyTaskDoneStatus(task)" [checked]="task.done_status"/>
+      <span [class.done]="task.done_status">{{task.title}}</span>
+    </label>
+  </div>
+  <div class="col align-items-end align-self-center">
+    <a (click)="deleteTask(task)"><span class="pull-right fa fa-remove"></span></a>
+  </div>
+</div>

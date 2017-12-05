@@ -1,0 +1,4 @@
+<!-- display the footer that shows the number of undone tasks -->
+<footer class="footer col-md-8 col-md-offset-2" *ngIf="undone_tasks_num > 0">
+  <span class="task-number"><strong>{{undone_tasks_num}}</strong> {{undone_tasks_num == 1 ? 'item' : 'items'}} left</span>
+</footer>

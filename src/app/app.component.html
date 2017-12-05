@@ -1,31 +1,15 @@
 <section class="task_app">
-  <header class="header">
-    <!-- show the title of the app -->
-    <h1>{{title}}</h1>
-    <div class="subheading">An app that records for you the tasks that you want to do, and helps you remember them.</div>
-    <input class="add_task" placeholder="Type your task (enter when done)" autofocus="" [(ngModel)]="newTask.title" (keyup.enter)="createTask()">
-  </header>
+  <!-- TaskListHeaderComponent that lets us create new task -->
+  <app-task-list-header (add)="onAddTodo($event)"></app-task-list-header>
+
   <div ui-view="header" autoscroll="true" class="row justify-content-center" style="margin-top: 20px;">
-    <!-- display this section if there are tasks -->
-    <section class="col-md-8 col-md-offset-2" *ngIf="tasks.length > 0">
-      <!-- loop through the tasks and get details of each task and display it -->
-        <div style="margin: 30px 0; padding: 10px;" class="row d-flex flex-row card border-primary" *ngFor="let task of tasks; let num = index">
-          <div class="col-0 align-self-center">
-            <label>
-              <!-- add the class `done` and check it if a task's done_status is true -->
-              <input class="modify_done" type="checkbox" value="" (click)="modifyDoneStatus(task)" [checked]="task.done_status"/>
-              <span [class.done]="task.done_status">{{task.title}}</span>
-            </label>
-          </div>
-          <div class="col align-items-end align-self-center">
-            <a (click)="deleteTask(task)"><span class="pull-right fa fa-remove"></span></a>
-          </div>
-        </div>
-    </section>
-  
-    <!-- display the footer that shows the number of undone tasks -->
-    <footer class="footer col-md-8 col-md-offset-2" *ngIf="undone_tasks_num > 0">
-      <span class="task-number"><strong>{{undone_tasks_num}}</strong> {{undone_tasks_num == 1 ? 'item' : 'items'}} left</span>
-    </footer>
+    <!-- TaskListComponent that shows the list of tasks -->
+    <app-task-list 
+      [tasks]="tasks" 
+      (modifyDoneStatus)="onModifyDoneStatus($event)"
+      (delete)="onDeleteTask($event)">
+    </app-task-list>
+    <!-- TaskListFooterComponent that shows the footer -->
+    <app-task-list-footer [undone_tasks_num]="undone_tasks_num"></app-task-list-footer>
   </div>
 </section>

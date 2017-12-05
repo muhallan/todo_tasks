@@ -1,0 +1,11 @@
+<!-- display this section if there are tasks -->
+<section class="col-md-8 col-md-offset-2" *ngIf="tasks.length > 0">
+  <!-- loop through the tasks and get details of each task and display it -->
+    <div *ngFor="let task of tasks; let num = index">
+      <app-task-list-item
+        [task]="task"
+        (modifyDoneStatus)="onModifyDoneStatus($event)"
+        (delete)="onDeleteTask($event)">
+      </app-task-list-item>
+    </div>
+</section>

@@ -9,37 +9,22 @@ import { Task } from './task';
 })
 export class AppComponent {
 
-  // the title of the app
-  title = 'Tasks Todo App';
-
-  // variable to store in a new task that might be added
-  // initialized with the current date and the done_status as false
-  newTask: Task = new Task({
-    description: 'my description',
-    date_created: new Date(),
-    date_updated: new Date(),
-    done_status: false
-  });
-
   // number of tasks that haven't yet been done
   undone_tasks_num = 0;
 
   constructor(private taskDataService: TaskDataService) {}
 
-  // method called to add a new task, i.e. when enter is pressed in the input text
-  createTask() {
+  // Add method to handle event emitted by TaskListHeaderComponent
+  onAddTodo(task: Task) {
     // call the service method for adding a task
-    this.taskDataService.addNewTask(this.newTask);
+    this.taskDataService.addNewTask(task);
 
     // increment the number of undone tasks
     this.undone_tasks_num++;
-
-    // clear the newTask variable and get it ready for adding a new task
-    this.newTask = new Task();
   }
 
   // method to delete the task
-  deleteTask(task) {
+  onDeleteTask(task) {
     // call the service method to delete the task
     this.taskDataService.deleteTaskWithId(task.id);
     // if the deleted task is undone, reduce the number of undone tasks
@@ -49,7 +34,7 @@ export class AppComponent {
   }
 
   // method to modify the done status of a task
-  modifyDoneStatus(task) {
+  onModifyDoneStatus(task) {
     // call the service method to toggle the done status of a task
     this.taskDataService.modifyTaskDoneStatus(task);
 

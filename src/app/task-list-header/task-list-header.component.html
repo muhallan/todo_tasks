@@ -1,0 +1,6 @@
+<header class="header">
+  <!-- show the title of the app -->
+  <h1>{{title}}</h1>
+  <div class="subheading">An app that records for you the tasks that you want to do, and helps you remember them.</div>
+  <input class="add_task" placeholder="Type your task (enter when done)" autofocus="" [(ngModel)]="newTask.title" (keyup.enter)="addTask()">
+</header>
