@@ -8,6 +8,8 @@ import { TaskListHeaderComponent } from './task-list-header/task-list-header.com
 import { TaskListComponent } from './task-list/task-list.component';
 import { TaskListItemComponent } from './task-list-item/task-list-item.component';
 import { TaskListFooterComponent } from './task-list-footer/task-list-footer.component';
+import { ApiService } from './api.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -19,9 +21,10 @@ import { TaskListFooterComponent } from './task-list-footer/task-list-footer.com
   ],
   imports: [
     FormsModule,
-    BrowserModule
+    BrowserModule,
+    HttpModule
   ],
-  providers: [TaskDataService],
+  providers: [TaskDataService, ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
