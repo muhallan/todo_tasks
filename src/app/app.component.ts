@@ -36,6 +36,11 @@ export class AppComponent implements OnInit {
     .subscribe(
       (newTask) => {
         this.tasks = this.tasks.concat(newTask);
+        for (task of this.tasks) {
+          if (task.done_status !== true) {
+            this.undone_tasks_num++;
+          }
+        }
       }
     );
 
