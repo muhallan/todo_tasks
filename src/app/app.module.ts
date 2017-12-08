@@ -10,7 +10,8 @@ import { TaskListItemComponent } from './task-list-item/task-list-item.component
 import { TaskListFooterComponent } from './task-list-footer/task-list-footer.component';
 import { ApiService } from './api.service';
 import { HttpModule } from '@angular/http';
-
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './redux/reducers';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { HttpModule } from '@angular/http';
   imports: [
     FormsModule,
     BrowserModule,
-    HttpModule
+    HttpModule,
+    StoreModule.forRoot(reducers)
   ],
   providers: [TaskDataService, ApiService],
   bootstrap: [AppComponent]
