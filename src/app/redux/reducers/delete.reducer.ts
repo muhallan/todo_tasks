@@ -1,7 +1,7 @@
 import * as delete_task from './../actions/delete_task.action';
 
-// The "delete_task" reducer deletes a task and returns the remaining tasks
-export const delete_task = (state: any = [], action: delete_task.DeleteTasksAction) => {
+// The "delete_task_reducer" reducer deletes a task and returns the remaining tasks
+export function delete_task_reducer (state: any = [], action: delete_task.DeleteTasksAction) {
     switch (action.type) {
         case delete_task.DELETE_TASK:
           return state.filter(task => {
@@ -10,4 +10,4 @@ export const delete_task = (state: any = [], action: delete_task.DeleteTasksActi
         default:
           return state;
       }
-};
+}

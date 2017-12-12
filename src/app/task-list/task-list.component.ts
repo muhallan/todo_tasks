@@ -1,5 +1,8 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Task } from '../task';
+import { Store } from '@ngrx/store';
+import { AppState } from './../redux/models/appstore.model';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-task-list',
@@ -7,6 +10,8 @@ import { Task } from '../task';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
+
+  // todo_state: Observable<Task[]>;
 
   @Input()
   tasks: Task[];
@@ -17,7 +22,10 @@ export class TaskListComponent implements OnInit {
   @Output()
   modifyDoneStatus: EventEmitter<Task> = new EventEmitter();
 
-  constructor() { }
+  // constructor(private store: Store<AppState>) {
+  //   this.todo_state = this.store.select(state => state.tasks);
+  //   this.todo_state.subscribe(tasks => console.log(tasks));
+  // }
 
   ngOnInit() {
   }

@@ -3,7 +3,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { Task } from './task';
-import { TaskDataService } from './task-data.service';
+import { TaskDataService } from './services/task-data.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {

@@ -1,7 +1,7 @@
 import * as update from './../actions/update_task.action';
 
-// The "update" reducer updates a task and returns the list of all tasks including the updated one
-export const update = (state: any = [], action: update.UpdateTaskAction) => {
+// The "update_task_reducer" reducer updates a task and returns the list of all tasks including the updated one
+export function update_task_reducer (state: any = [], action: update.UpdateTaskAction) {
     switch (action.type) {
         case update.UPDATE_TASK:
           return state.map(task => {
@@ -10,4 +10,4 @@ export const update = (state: any = [], action: update.UpdateTaskAction) => {
         default:
           return state;
       }
-};
+}

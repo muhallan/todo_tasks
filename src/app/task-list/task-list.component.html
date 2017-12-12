@@ -1,5 +1,5 @@
 <!-- display this section if there are tasks -->
-<section *ngIf="tasks.length > 0">
+<section *ngIf="tasks && tasks.length">
   <!-- loop through the tasks and get details of each task and display it -->
     <div *ngFor="let task of tasks; let num = index">
       <app-task-list-item

@@ -1,8 +1,9 @@
 import { Task } from './../../task';
+import { TaskState } from './../reducers/tasks.reducer';
 
 export interface AppState {
-    tasks: Task[];
+    task: TaskState;
 }
 
 // selector
-export const getCurrentTasks = (state: AppState) => state.tasks;
+// export const getCurrentTasks = (state: AppState) => state.task;

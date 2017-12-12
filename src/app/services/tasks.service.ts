@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AppState } from './../models/appstore.model';
-import { Task } from './../../task';
+import { AppState } from './../redux/models/appstore.model';
+import { Task } from './../task';
 import { Store } from '@ngrx/store';
-import { environment } from './../../../environments/environment';
+import { environment } from './../../environments/environment';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { CreateTaskAction } from './../actions/create_task.action';
-import { DeleteTasksAction } from './../actions/delete_task.action';
-import { GetTasksAction } from './../actions/get_tasks.action';
-import { UpdateTaskAction } from './../actions/update_task.action';
+import { CreateTaskAction } from './../redux/actions/create_task.action';
+import { DeleteTasksAction } from './../redux/actions/delete_task.action';
+import { GetTasksAction } from './../redux/actions/get_tasks.action';
+import { UpdateTaskAction } from './../redux/actions/update_task.action';
+import { get_tasks_reducer } from './../redux/reducers/tasks.reducer';
+
+import 'rxjs/add/operator/map';
 
 const API_URL = environment.apiUrl;
 const HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
@@ -16,10 +19,15 @@ const HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
 @Injectable()
 export class TasksService {
 
-  tasks: Observable<Array<Task>>;
+  tasks: Task[];
 
   constructor(private http: Http, private store: Store<AppState>) {
-    this.tasks = store.select(state => state.tasks); // Bind an observable of our tasks to "TasksService"
+    setTimeout(() => {
+      console.log('timeout');
+      this.store.dispatch({type: 'GET_TASKS', payload: {id: 2}});
+    }, 3000
+  );
+
   }
 
   // API: GET /todos

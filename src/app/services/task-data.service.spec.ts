@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { TaskDataService } from './task-data.service';
-import { Task } from './task';
+import { Task } from './../task';
 
 describe('TaskDataService', () => {
   beforeEach(() => {
