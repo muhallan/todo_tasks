@@ -14,8 +14,6 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './redux/reducers';
 import { TasksService } from './services/tasks.service';
 import { EffectsModule } from '@ngrx/effects';
-import { TasksEffects } from './redux/effects/tasksEffects';
-import { get_tasks_reducer } from './redux/reducers/tasks.reducer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +26,7 @@ import { get_tasks_reducer } from './redux/reducers/tasks.reducer';
     FormsModule,
     BrowserModule,
     HttpModule,
-    StoreModule.forRoot({tasks_reducer: get_tasks_reducer})
+    StoreModule.forRoot(reducers)
     // EffectsModule.forRoot([TasksEffects])
   ],
   providers: [TasksService],

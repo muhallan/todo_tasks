@@ -4,43 +4,34 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from './task';
 import { Store } from '@ngrx/store';
 import { AppState } from './redux/models/appstore.model';
-import { CreateTaskAction, CREATE_TASK } from './redux/actions/create_task.action';
-import { GetTasksAction, GET_TASKS } from './redux/actions/get_tasks.action';
 import { TasksService } from './services/tasks.service';
 import { Observable } from 'rxjs/Observable';
-import { TaskState } from './redux/reducers/tasks.reducer';
+import { TaskState, GET_TASKS } from './redux/reducers/tasks.reducer';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   // number of tasks that haven't yet been done
   undone_tasks_num = 0;
 
-  // tasks: Task[];
+  tasks: Task[] = [];
   taskState: Observable<TaskState>;
 
   constructor(private tasks_service: TasksService, private store: Store<AppState>) {
 
+    this.store.dispatch({type: GET_TASKS});
+
     this.taskState = store.select('task');
     this.taskState.subscribe(data => {
-      // this.tasks = data;
-      console.log(data);
-    }); // Bind an observable of our tasks to "TasksService"
-    this.store.dispatch({type: 'GET_TASKS', payload: {id: 3}});
-    // this.tasks = this.tasks_service.tasks; // Bind to the "items" observable on the "ItemsService"
-    // console.log(this.tasks);
+      this.tasks = data.tasks;
+    });
 
     // get the list of all tasks
     this.tasks_service.getAllTasks();
-  }
-
-  // Dispatch the Action
-  public ngOnInit() {
-    // this.store.dispatch(new GetTasksAction(new Array<Task>()));
   }
 
   // Add method to handle event emitted by TaskListHeaderComponent
