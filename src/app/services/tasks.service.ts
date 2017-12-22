@@ -22,7 +22,6 @@ export class TasksService {
 
   // API: GET /todos
   public getAllTasks() {
-    console.log('i am in service');
     this.http.get(API_URL + '/todos')
       .map(res => res.json())
       .subscribe(payload => this.store.dispatch(new GetTasksAction(payload)));
