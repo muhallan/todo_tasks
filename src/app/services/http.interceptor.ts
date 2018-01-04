@@ -7,12 +7,14 @@ export class HttpInterceptor extends Http {
 
     constructor (backend: ConnectionBackend, defaultOptions: RequestOptions) {
         super(backend, defaultOptions);
+        this.options_global = defaultOptions;
         this.options_global.headers.append('Content-Type', 'application/json');
+        this.options_global.headers.append('NewHeader', 'TestHeader');
     }
 
     request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
-        options.headers.append('Content-Type', 'application/json');
-        return super.request(url, options);
+        // options.headers.append('Content-Type', 'application/json');
+        return super.request(url, this.options_global);
     }
 
     get(url: string, options?: RequestOptionsArgs): Observable<Response> {

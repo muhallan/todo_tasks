@@ -5,6 +5,7 @@ import { Task } from './../task';
 import { Store } from '@ngrx/store';
 import { environment } from './../../environments/environment';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
+// import { HttpInterceptor } from './http.interceptor';
 import { tasks_reducer, CreateTaskAction, DeleteTasksAction, GetTasksAction, UpdateTaskAction } from './../redux/reducers/tasks.reducer';
 
 import 'rxjs/add/operator/map';
@@ -29,7 +30,7 @@ export class TasksService {
 
   // API: POST /todos
   public createTask(task: Task) {
-    this.http.post(API_URL + '/todos', JSON.stringify(task), HEADER)
+    this.http.post(API_URL + '/todos', JSON.stringify(task))
     .map(res => (new CreateTaskAction(res.json())))
     .subscribe(action => this.store.dispatch(action));
   }
@@ -46,7 +47,7 @@ export class TasksService {
 
   // API: PUT /todos/:id
   public updateTask(task: Task) {
-    this.http.put(API_URL + '/todos/' + task.id, JSON.stringify(task), HEADER)
+    this.http.put(API_URL + '/todos/' + task.id, JSON.stringify(task))
     .subscribe(res => this.store.dispatch(new UpdateTaskAction(task)));
   }
 
@@ -63,12 +64,12 @@ export class TasksService {
   }
 
   // create headers to use with the Http module while sending a post
-  private jsonHeaders() {
+  /* private jsonHeaders() {
     const headers = new Headers;
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
     const reqOptions = new RequestOptions({headers: headers});
 
     return reqOptions;
-}
+} */
 }
